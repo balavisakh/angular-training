@@ -1,0 +1,13 @@
+<h1 class="post-title">Post Details</h1>
+<mat-card>
+    <div class="card-div" *ngIf="userPost">
+        <b>No :</b> {{userPost.id}}<br>
+        <b>Title :</b> {{userPost.title}}<br>
+        <b>comment :</b> {{userPost.body}}<br>
+        <mat-card-actions>
+            <button (click)="editUser(userPost.id)" mat-button color="primary">Edit</button>
+            <button (click)="deleteUser(userPost.id)" mat-button color="warn">Delete</button>
+          </mat-card-actions>
+    </div>
+</mat-card>
+

@@ -1,0 +1,39 @@
+<h1 class="user-posts-title">User Post Listing Table</h1>
+<button mat-raised-button color="primary" (click)="viewUsers()">view users</button>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+      <td mat-cell *matCellDef="let posts">{{ posts.id }}</td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let posts">{{ posts.title }}</td>
+    </ng-container>
+    <!-- comments Column -->
+    <!-- <ng-container matColumnDef="comments">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Comments</th>
+      <td mat-cell *matCellDef="let posts">{{ posts.body }}</td>
+    </ng-container> -->
+
+    <!-- title Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let posts">
+        <button mat-button (click)="viewPost(posts.id)">View Post</button>
+        <!-- <button mat-button color="primary">show comment</button> -->
+        <button mat-button (click)="editPost(posts.id)" color="accent">Edit</button>
+        <button mat-button (click)="deletePost(posts.id)" color="warn">Delete</button>
+        <button mat-button (click)="viewPostComments(posts.id)" color="primary">show comments</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

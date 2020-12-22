@@ -1,0 +1,17 @@
+<h1 class="update-post-title">Update post</h1>
+<mat-card>
+  <div>
+    <div [formGroup]="updateFormGroup">
+        <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput  formControlName="updateFormTitle">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Comment</mat-label>
+            <textarea matInput formControlName="updateFormComment"></textarea>
+          </mat-form-field>
+          <button (click)="updatePost()" mat-raised-button color="primary">Save</button>
+    </div>
+  </div>
+</mat-card>

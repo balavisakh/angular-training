@@ -1,0 +1,27 @@
+<h1 class="update-post-title">Update User</h1>
+<mat-card>
+  <div>
+    <div [formGroup]="updateFormGroup">
+        <mat-form-field appearance="fill">
+            <mat-label>User name</mat-label>
+            <input matInput  formControlName="username">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput  formControlName="email">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Website</mat-label>
+            <input matInput  formControlName="website">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput  formControlName="phone">
+          </mat-form-field>
+          <button (click)="updateUser()" mat-raised-button color="primary">Save</button>
+    </div>
+  </div>
+</mat-card>
