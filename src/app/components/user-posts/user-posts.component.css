@@ -4,3 +4,8 @@ table {
   .user-posts-title {
     text-align: center;
   }
+
+  .username:hover {
+    cursor: pointer;
+    color: blue;
+  }

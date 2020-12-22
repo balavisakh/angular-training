@@ -13,16 +13,17 @@ import {DeletePostDialogComponent} from '../delete-post-dialog/delete-post-dialo
   styleUrls: ['./user-posts.component.css']
 })
 export class UserPostsComponent implements OnInit, AfterViewInit {
-  userPosts:Posts[];
-  displayedColumns: string[] = ['id', 'title','actions'];
+  userPosts:any[];
+  displayedColumns: string[] = ['id', 'title','name','actions'];
   dataSource = new MatTableDataSource<Posts>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  usersEntity = {};
   constructor(private userService: UserService, private router:Router, public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getPost();
-
+    this.getUsers();
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -32,7 +33,16 @@ export class UserPostsComponent implements OnInit, AfterViewInit {
     this.userService.getAllPosts().subscribe((posts)=>{
       this.userPosts = posts;
       this.dataSource.data = this.userPosts;
-      // console.log(this.dataSource,"userPosts");
+      // console.log(this.dataSource.data,"userPosts");
+    })
+  }
+
+  // testing for getting users inside posts
+  getUsers(): void {
+    this.userService.getAllUsers().subscribe((users)=>{
+      users.forEach((user)=>{
+          this.usersEntity[user.id]=user;
+      });
     })
   }
 
@@ -46,7 +56,6 @@ export class UserPostsComponent implements OnInit, AfterViewInit {
   }
 
   deletePost(id:number): void {
-    // console.log(id,"idfrombtn");
     this.dialog.open(DeletePostDialogComponent,{data:{deletePostId:id}});
   }
 
@@ -56,6 +65,10 @@ export class UserPostsComponent implements OnInit, AfterViewInit {
 
   viewPostComments(id:number): void {
     this.router.navigate([`show-post-comments/${id}/comments`]);
+  }
+
+  postsByUser(id) {
+    this.router.navigate([`show-comments/${id}/posts`]);
   }
 }
 
