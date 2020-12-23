@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { Posts } from '../interfaces/posts';
+import { Users } from '../interfaces/users';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +12,8 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   // To get all posts
-  getAllPosts():Observable<any> {
-    return this.http.get(this.api_url + '/posts/');
+  getAllPosts():Observable<Posts[]> {
+    return this.http.get(this.api_url + '/posts/') as Observable<Posts[]>;
   }
   // To get a specific post
   getPostById(id:number):Observable<any> {
@@ -28,8 +30,8 @@ export class UserService {
     return this.http.delete(this.api_url + `/posts/${id}`);
   }
   // To get all user informations
-  getAllUsers():Observable<any> {
-    return this.http.get(this.api_url + '/users');
+  getAllUsers():Observable<Users[]> {
+    return this.http.get(this.api_url + '/users') as Observable<Users[]>;
   }
 
   // Get posts for user
